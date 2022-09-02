@@ -7,3 +7,15 @@ const getAllCategoryNewsFromApi = () => {
 };
 getAllCategoryNewsFromApi()
 
+const processAllCategoryNews = (categories) => {
+    const allCategoryNewsContainer = document.getElementById('all-category-news-container');
+
+    categories.forEach(category => {
+        const creatCategoryButton = document.createElement('button');
+        creatCategoryButton.id = `${category.category_id}`;
+        console.log(category)
+        creatCategoryButton.innerHTML = `${category.category_name}`;
+        allCategoryNewsContainer.appendChild(creatCategoryButton);
+    });
+    
+};
