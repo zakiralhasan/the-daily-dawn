@@ -14,37 +14,46 @@ const processAllCategoryNews = (categories) => {
     categories.forEach(category => {
         const creatCategoryButton = document.createElement('button');
         creatCategoryButton.id = `${category.category_id}`;
-        creatCategoryButton.classList.add('mx-2', 'border');
+        creatCategoryButton.classList.add('mx-2');
         // console.log(category)
         creatCategoryButton.innerHTML = `${category.category_name}`;
         allCategoryNewsContainer.appendChild(creatCategoryButton);
     });
 };
-    // const newsId = allCategoryNewsContainer.childNodes;
-    document.getElementById('all-category-news-container').addEventListener('click', function(event){
-        console.log('hellow')
-        getSngleCategoryNewsFromApi(event.target.id)
-    });
+
+// this event handler for get and set category name and ID 
+document.getElementById('all-category-news-container').addEventListener('click', function(event){
+    getSngleCategoryNewsFromApi(event.target.id, event.target.innerText)
+});
 
 //this arrow function for getting the information from single category news API
-const getSngleCategoryNewsFromApi= (newsCategoryID) => {
+const getSngleCategoryNewsFromApi= (newsCategoryID, newsCategoryName) => {
     fetch(`https://openapi.programming-hero.com/api/news/category/${newsCategoryID}`)
     .then(res => res.json())
-    .then(data => processSingleCategoryNews(data.data))
+    .then(data => processSingleCategoryNews(data.data, newsCategoryName))
 };
-getSngleCategoryNewsFromApi();
+// getSngleCategoryNewsFromApi();
 // this arrow function for process and set the data which got from single category news API
-const processSingleCategoryNews = (singleCategory) => {
+const processSingleCategoryNews = (singleCategory, newsCategoryName) => {
+
     const singleNewsContainer = document.getElementById('single-news-container');
     singleNewsContainer.innerHTML = '';
 
-    console.log(singleCategory)
+    const newsCountDisplay = document.getElementById('news-count-display');
+    newsCountDisplay.innerHTML = '';
+
+    if(singleCategory.length > 0 && newsCategoryName){
+      newsCountDisplay.innerText = `${singleCategory.length} items found for category ${newsCategoryName}`;
+    }else{
+      newsCountDisplay.innerText = `No items found for category ${newsCategoryName}`;
+    };
+
     singleCategory.forEach(singleNews => {
         const {thumbnail_url, title, details, author, total_view} = singleNews;
-        // console.log(singleNews)
+        console.log(singleNews)
         const creatSingleNewsDiv = document.createElement('div');
         creatSingleNewsDiv.innerHTML = `
-        <div class="card lg:card-side bg-white shadow-xl p-3 my-4">
+        <div class="card lg:card-side bg-white shadow-xl p-3 my-6">
         <figure><img src="${thumbnail_url}" alt="Album"></figure>
         <div class="card-body">
           <h2 class="card-title">${title}</h2>
@@ -68,7 +77,7 @@ const processSingleCategoryNews = (singleCategory) => {
                 <i class="fa-regular fa-star"></i>
                 <i class="fa-regular fa-star"></i>
             </div>
-            <button class="btn btn-primary">Listen</button>
+            <button class="btn btn-primary">Details</button>
           </div>
         </div>
       </div>        
