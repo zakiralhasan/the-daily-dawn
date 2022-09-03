@@ -14,17 +14,21 @@ const processAllCategoryNews = (categories) => {
     categories.forEach(category => {
         const creatCategoryButton = document.createElement('button');
         creatCategoryButton.id = `${category.category_id}`;
-        creatCategoryButton.classList.add('mx-2');
+        creatCategoryButton.classList.add('mx-2', 'border');
         // console.log(category)
         creatCategoryButton.innerHTML = `${category.category_name}`;
         allCategoryNewsContainer.appendChild(creatCategoryButton);
     });
-    
 };
+    // const newsId = allCategoryNewsContainer.childNodes;
+    document.getElementById('all-category-news-container').addEventListener('click', function(event){
+        console.log('hellow')
+        getSngleCategoryNewsFromApi(event.target.id)
+    });
 
 //this arrow function for getting the information from single category news API
-const getSngleCategoryNewsFromApi= () => {
-    fetch(`https://openapi.programming-hero.com/api/news/category/01`)
+const getSngleCategoryNewsFromApi= (newsCategoryID) => {
+    fetch(`https://openapi.programming-hero.com/api/news/category/${newsCategoryID}`)
     .then(res => res.json())
     .then(data => processSingleCategoryNews(data.data))
 };
@@ -32,12 +36,13 @@ getSngleCategoryNewsFromApi();
 // this arrow function for process and set the data which got from single category news API
 const processSingleCategoryNews = (singleCategory) => {
     const singleNewsContainer = document.getElementById('single-news-container');
+    singleNewsContainer.innerHTML = '';
+
     console.log(singleCategory)
     singleCategory.forEach(singleNews => {
         const {thumbnail_url, title, details, author, total_view} = singleNews;
-        console.log(singleNews)
+        // console.log(singleNews)
         const creatSingleNewsDiv = document.createElement('div');
-        // creatSingleNewsDiv.classList.add('bg-white', 'p-2');
         creatSingleNewsDiv.innerHTML = `
         <div class="card lg:card-side bg-white shadow-xl p-3 my-4">
         <figure><img src="${thumbnail_url}" alt="Album"></figure>
