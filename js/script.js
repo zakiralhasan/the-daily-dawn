@@ -4,9 +4,7 @@ const getAllCategoryNewsFromApi = () => {
     fetch(`https://openapi.programming-hero.com/api/news/categories`)
     .then(res => res.json())
     .then(data => processAllCategoryNews(data.data.news_category))
-    .catch(error => {
-      console.log(error)
-    });
+    .catch(error => console.log(error));
 };
 getAllCategoryNewsFromApi()
 
@@ -41,9 +39,7 @@ const getSngleCategoryNewsFromApi= (newsCategoryID, newsCategoryName) => {
     fetch(`https://openapi.programming-hero.com/api/news/category/${newsCategoryID}`)
     .then(res => res.json())
     .then(data => processSingleCategoryNews(data.data, newsCategoryName))
-    .catch(error => {
-      console.log(error)
-    });
+    .catch(error => console.log(error));
 };
 
 // this arrow function for process and set the data which got from single category news API
@@ -112,10 +108,8 @@ const processSingleCategoryNews = (singleCategory, newsCategoryName) => {
 const getNewsDetailsFromApi = (gettingID) => {
   fetch(`https://openapi.programming-hero.com/api/news/${gettingID}`)
   .then(res => res.json())
-  .then(data => processNewsDetailsInformation(data.data[0])).catch(error => {
-    console.log(error)
-  });
-
+  .then(data => processNewsDetailsInformation(data.data[0]))
+  .catch(error => console.log(error));
 };
 
 // this arrow function for process and set the data which got from details news API
