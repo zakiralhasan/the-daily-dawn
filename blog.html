@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The bangla post</title>
+    <!-- fonawesome link  -->
+    <script src="https://kit.fontawesome.com/59e31b1ee8.js" crossorigin="anonymous"></script>
+    <!-- tailwind and its components library links -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.24.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  <!-- header section start  -->
+    <header>
+        <div class="navbar w-3/4 mx-auto bg-gray-100 py-5 ">
+            <div class="flex-1">
+              <a class="btn btn-ghost normal-case text-2xl">The daily dawn</a>
+            </div>
+            <div class="flex-none">
+              <ul class="menu menu-horizontal p-0">
+                <li><a>News</a></li>
+                <li><a>Blog</a></li>
+              </ul>
+            </div>
+            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                <div class="w-10 rounded-full">
+                  <img src="https://placeimg.com/80/80/people" />
+                </div>
+              </label>
+        </div>
+        <hr class="bg-gray-300 py-px w-10/12 mx-auto">
+    </header>
+    <!-- main sectin start  -->
+    <main class="w-3/4 mx-auto pb-16">
+      <section class="my-6">
+        <div class="bg-white p-4 my-4 rounded-lg shadow-lg">
+            <h1 class="text-2xl my-2">What are the differences between var, let, and const?</h1>
+            <p>The <strong>ver</strong> is a functional scope variable. <strong>It can be redeclared and reassigned</strong>. It is an old feature of Javascript. It also allowed hoisting.</p>
+            <p>The <strong>let</strong> is a block scope variable. <strong>It can be reassigned but not be redeclared</strong>. It is a feature of ES6. It is not allowed hoisting.</p>
+            <p>The <strong>const</strong> is a block scope variable.  <strong>It cannot be reassigned or redeclared</strong>. It is a feature of ES6. It is not allowed hoisting.</p>
+        </div>
+        <div class="bg-white p-4 my-4 rounded-lg shadow-lg">
+            <h1 class="text-2xl my-2">What is the difference between a regular function and an arrow function?</h1>
+            <h2 class="font-bold">1. Syntax</h2>
+            <p>We can write normal and arrow function in this way:-</p>
+            <p><span class="font-bold">Regular function:</span> <code>
+                var add = function(x, y) {
+                    return x + y
+                };
+                </code></p>
+            <p><span class="font-bold">Arrow function:</span> <code>let add = (x, y) =>  x + y;</code></p>
+            <h2 class="font-bold mt-4">2. this keyword</h2>
+            <p><span class="font-bold">Regular function:</span> In regular function, this changes according to the way that function is invoked.</p>
+            <p><span class="font-bold">Arrow function:</span> Arrow functions don’t have their own <strong>this</strong>, and they don’t redefine the value of <strong>this</strong> within the function. <strong>this</strong> inside an arrow function always refers to this from the outer context. </p>
+            <h2 class="font-bold mt-4">3. Hoisting</h2>
+            <p><span class="font-bold">Regular function:</span> In regular function, function gets hoisting at top.</p>
+            <p><span class="font-bold">Arrow function:</span> In arrow function, function get hoisted where you define. So, if you call the function before initialisation you will get referenceError.</p>
+        </div>
+        <div class="bg-white p-4 my-4 rounded-lg shadow-lg">
+            <h1 class="text-2xl my-2">What is the difference between map, foreach, filter and find method?</h1>
+            <p><span class="font-bold">map() method:</span> The map() method creates a new array populated with the results of calling a provided function on every element in the calling array.</p>
+            <p><span class="font-bold">forEach() method:</span> The forEach() method executes a provided function once for each array element. It does not return any new array.</p>
+            <p><span class="font-bold">filter() method:</span> The filter() method creates a shallow copy of a portion of a given array, filtered down to just the elements from the given array that pass the test implemented by the provided function</p>
+            <p><span class="font-bold">find() method:</span> The find() method returns the first element in the provided array that satisfies the provided testing function. If no values satisfy the testing function, undefined is returned</p>
+        </div>
+        <div class="bg-white p-4 my-4 rounded-lg shadow-lg">
+            <h1 class="text-2xl my-2">Why do we use template string?</h1>
+            <h3>Template strings or template literals are delimited with backtick (`) characters. It is an ES6 feature. Some benefits of using template strings are given below:-</h3>
+            <p><span class="font-bold">1.</span> We can write strings, numbers, and variables on the same line without using concatenate with the help of template strings.</p>
+            <p><span class="font-bold">As like:</span> <code>`My name is ${nameVariable}`</code></p>
+            <p><span class="font-bold">2.</span> We can write multy line code without using new line (\n) with the help of template strings.</p>
+            <p><span class="font-bold">3.</span> We can also write HTML tag inside the Javascript file with the help of template strings.</p>
+        </div>
+      </section>
+    </main>
+    <!-- footer section start  -->
+    <footer class="bg-white py-8">
+      <p class="text-xl text-center">Copyright 2022 the daily dawn | All rights reserved.</p>
+    </footer>
+
+    <!-- script section  -->
+    <script src="js/script.js"></script>
+</body>
+</html>
