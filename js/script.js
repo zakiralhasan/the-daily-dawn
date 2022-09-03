@@ -19,11 +19,18 @@ const processAllCategoryNews = (categories) => {
         creatCategoryButton.innerHTML = `${category.category_name}`;
         allCategoryNewsContainer.appendChild(creatCategoryButton);
     });
+  // load spinner end
+  loadingDisplay.classList.add('hidden');
 };
+
+// below line for load spinner section 
+const loadingDisplay = document.getElementById('loading-display');
 
 // this event handler for get and set category name and ID 
 document.getElementById('all-category-news-container').addEventListener('click', function(event){
-    getSngleCategoryNewsFromApi(event.target.id, event.target.innerText)
+    getSngleCategoryNewsFromApi(event.target.id, event.target.innerText);
+    // load spinner start 
+    loadingDisplay.classList.remove('hidden');
 });
 
 //this arrow function for getting the information from single category news API
@@ -32,7 +39,7 @@ const getSngleCategoryNewsFromApi= (newsCategoryID, newsCategoryName) => {
     .then(res => res.json())
     .then(data => processSingleCategoryNews(data.data, newsCategoryName))
 };
-// getSngleCategoryNewsFromApi();
+
 // this arrow function for process and set the data which got from single category news API
 const processSingleCategoryNews = (singleCategory, newsCategoryName) => {
 
@@ -84,5 +91,6 @@ const processSingleCategoryNews = (singleCategory, newsCategoryName) => {
         `;
         singleNewsContainer.appendChild(creatSingleNewsDiv);
     });
-    
+    // load spinner end
+    loadingDisplay.classList.add('hidden');
 };
