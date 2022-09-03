@@ -115,7 +115,7 @@ const getNewsDetailsFromApi = (gettingID) => {
 // this arrow function for process and set the data which got from details news API
 const processNewsDetailsInformation = (newsDetails) => {
 // destructuring object 
-  const {author, details, rating, title, total_view, _id, category_id} = newsDetails;
+  const {thumbnail_url, author, details, rating, title, total_view, _id, category_id} = newsDetails;
 
   const getModalContainer = document.getElementById('modal-container');
   const creatModalSection = document.createElement('div');
@@ -125,6 +125,7 @@ const processNewsDetailsInformation = (newsDetails) => {
   <div class="modal">
     <div class="modal-box relative w-fit h-full">
       <label for="${_id}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+      <img class="w-96" src="${thumbnail_url}" alt="">
       <h3 class="my-3 font-bold">Title: ${title? title : 'No data found'}</h3>
       <h3 class="my-2"><span class="font-semibold">Author Name:</span> ${author.name? author.name : 'No data found'}</h3>
       <h3 class="my-2"><span class="font-semibold">ID:</span> ${_id? _id : 'No data found'}</h3>
