@@ -6,7 +6,8 @@ const getAllCategoryNewsFromApi = () => {
     .then(data => processAllCategoryNews(data.data.news_category))
     .catch(error => console.log(error));
 };
-getAllCategoryNewsFromApi()
+// below function calling for load all category section automatically or dynamically
+getAllCategoryNewsFromApi();
 
 // this arrow function for process and set the data which got from all category news API 
 const processAllCategoryNews = (categories) => {
@@ -29,7 +30,7 @@ const loadingDisplay = document.getElementById('loading-display');
 
 // this event handler for get and set category name and ID 
 document.getElementById('all-category-news-container').addEventListener('click', function(event){
-    getSngleCategoryNewsFromApi(event.target.id, event.target.innerText);
+  getSngleCategoryNewsFromApi(event.target.id, event.target.innerText);
     // load spinner start 
     loadingDisplay.classList.remove('hidden');
 });
@@ -41,6 +42,8 @@ const getSngleCategoryNewsFromApi= (newsCategoryID, newsCategoryName) => {
     .then(data => processSingleCategoryNews(data.data, newsCategoryName))
     .catch(error => console.log(error));
 };
+// below function calling for load some data automatically at the initial stage 
+getSngleCategoryNewsFromApi('01','Breaking News');
 
 // this arrow function for process and set the data which got from single category news API
 const processSingleCategoryNews = (singleCategory, newsCategoryName) => {
@@ -65,8 +68,7 @@ const processSingleCategoryNews = (singleCategory, newsCategoryName) => {
     singleCategory.forEach(singleNews => {
       // destructuring object
         const {thumbnail_url, title, details, author, total_view, _id} = singleNews;
-        console.log(singleNews)
-        console.log(_id)
+
         const creatSingleNewsDiv = document.createElement('div');
         creatSingleNewsDiv.innerHTML = `
         <div class="card lg:card-side bg-white shadow-xl p-3 my-6">
@@ -93,7 +95,7 @@ const processSingleCategoryNews = (singleCategory, newsCategoryName) => {
                 <i class="fa-regular fa-star"></i>
                 <i class="fa-regular fa-star"></i>
             </div>
-            <label for="${_id}" class="btn modal-button" onclick="getNewsDetailsFromApi('${_id}')">Details</label>
+            <label for="my-modal" class="btn modal-button" onclick="getNewsDetailsFromApi('${_id}')">open modal</label>
           </div>
         </div>
       </div>        
@@ -119,13 +121,10 @@ const processNewsDetailsInformation = (newsDetails) => {
 
   const getModalContainer = document.getElementById('modal-container');
   const creatModalSection = document.createElement('div');
-
+  getModalContainer.innerHTML = '';
+  
   creatModalSection.innerHTML = `
-  <input type="checkbox" id="${_id}" class="modal-toggle" />
-  <div class="modal">
-    <div class="modal-box relative w-fit h-full">
-      <label for="${_id}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-      <img class="w-96" src="${thumbnail_url}" alt="">
+      <img src="${thumbnail_url}" alt="">
       <h3 class="my-3 font-bold">Title: ${title? title : 'No data found'}</h3>
       <h3 class="my-2"><span class="font-semibold">Author Name:</span> ${author.name? author.name : 'No data found'}</h3>
       <h3 class="my-2"><span class="font-semibold">ID:</span> ${_id? _id : 'No data found'}</h3>
@@ -135,8 +134,6 @@ const processNewsDetailsInformation = (newsDetails) => {
       <p class="my-2"><span class="font-semibold">Rating badge:</span> ${rating.badgers? rating.badgers : 'No data found'}</p>
       <p class="my-2"><span class="font-semibold"><span class="font-semibold">Total view:</span></span> ${total_view? total_view : 'No data found'}</p>
       <p class="my-2"><span class="font-semibold">Details:</span> ${details? details : 'No data found'}</p>      
-    </div>
-  </div>
   `;
   getModalContainer.appendChild(creatModalSection);
 };
